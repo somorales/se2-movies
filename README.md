@@ -18,6 +18,12 @@ Run the application by doing:
 $   npm start
 ```
 
+Run the tests by doing:
+
+```
+$ npm test
+```
+
 Endpoints
 
 - http://localhost:3000/ health check endpoint
