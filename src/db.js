@@ -5,8 +5,15 @@ let database = {
   stars: []
 };
 
+// to generate IDs
+let sequences = {
+  movies: 0,
+  stars: 0
+};
+
 const _create = (table, data) => {
-  const id = database[table].length + 1;
+  sequences[table] += 1
+  const id = sequences[table];
   const record = { id, ...data };
   database[table].push(record);
   return record;
