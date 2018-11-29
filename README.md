@@ -31,3 +31,7 @@ Endpoints
 - http://localhost:3000/movies/:id (GET)
 - http://localhost:3000/stars (POST, GET)
 - http://localhost:3000/stars/:id (GET)
+
+## License
+
+MIT
