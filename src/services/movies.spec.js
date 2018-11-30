@@ -26,7 +26,7 @@ describe('POST /movies', () => {
     spy.mockRestore();
   });
 
-  test('should return 200 and generate an ID for the movie object', async () => {
+  test('should return 200 and an ID for the movie object', async () => {
     const response = await request(app)
       .post('/movies')
       .send({})

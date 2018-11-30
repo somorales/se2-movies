@@ -25,7 +25,7 @@ describe('POST /stars', () => {
     spy.mockRestore();
   });
 
-  test('should return 200 and generate an ID for the star object', async () => {
+  test('should return 200 and an ID for the star object', async () => {
     const response = await request(app)
       .post('/stars')
       .send({})
