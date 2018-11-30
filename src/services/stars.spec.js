@@ -25,23 +25,13 @@ describe('POST /stars', () => {
     spy.mockRestore();
   });
 
-  test('should return 200', async () => {
+  test('should return 200 and generate an ID for the star object', async () => {
     const response = await request(app)
       .post('/stars')
       .send({})
       .set('Accept', 'application/json');
-    expect(response.statusCode).toBe(200);
-  });
-
-  test('should return a star object', async () => {
-    const response = await request(app)
-      .post('/stars')
-      .send({})
-      .set('Accept', 'application/json');
-
     const star = response.body;
+    expect(response.statusCode).toBe(200);
     expect(star.id).toBeDefined();
-    expect(star.name).toBeDefined();
-    expect(star.lastname).toBeDefined();
   });
 });

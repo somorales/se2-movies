@@ -26,25 +26,13 @@ describe('POST /movies', () => {
     spy.mockRestore();
   });
 
-  test('should return 200', async () => {
+  test('should return 200 and generate an ID for the movie object', async () => {
     const response = await request(app)
       .post('/movies')
       .send({})
       .set('Accept', 'application/json');
-    expect(response.statusCode).toBe(200);
-  });
-
-  test('should return a movie object', async () => {
-    const response = await request(app)
-      .post('/movies')
-      .send({})
-      .set('Accept', 'application/json');
-
     const movie = response.body;
+    expect(response.statusCode).toBe(200);
     expect(movie.id).toBeDefined();
-    expect(movie.title).toBeDefined();
-    expect(movie.year).toBeDefined();
-    expect(movie.stars).toBeInstanceOf(Array);
-    expect(movie.stars.length).toBe(1);
   });
 });
