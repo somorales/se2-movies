@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/jorgeramirez/se2-movies.svg?branch=master)](https://travis-ci.com/jorgeramirez/se2-movies)
 
-A tiny movies API
+A tiny movies API.
 
 ## Run
 
