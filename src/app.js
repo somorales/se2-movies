@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.json({ msg: 'Hello world!' });
 });
 
-require('./services/movies').register(app);
-require('./services/stars').register(app);
+require('./routes/movies').register(app);
+require('./routes/stars').register(app);
 
 module.exports = app;
