@@ -1,0 +1,125 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: "Movies API"
+  description: This is a simple API for managing movies.
+  license:
+    name: MIT
+    url: https://github.com/apiaryio/polls-api/blob/master/LICENSE
+# You should put here the URL to your Heroku instance    
+host: se2-movies.herokuapp.com
+basePath: /
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /movies:
+    x-summary: Movies collection
+    get:
+      summary: List All Movies in the database
+      consumes:
+      - application/json
+      produces:
+      - application/json      
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Movie'
+
+    post:
+      description: >-
+        You may create your own movie using this action. It takes a JSON
+        object containing the properties of a movie.
+      summary: Create a New Movie
+      consumes:
+      - application/json
+      produces:
+      - application/json       
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Movie'
+      responses:
+        201:
+          description: ''
+          schema:
+            $ref: '#/definitions/MovieExtended'
+
+
+definitions:
+  # This is a base Movie model that "packs" the basic properties
+  # to avoid repeating ourselves.
+  BaseMovieModel:
+    title: Movie
+    type: object
+    properties:
+      title:
+        type: string
+        description: The title of the movie.
+      year:
+        type: number
+        description: The year of release.
+    required:
+      - title
+      - year
+        
+  Movie:
+    title: Movie
+    allOf:
+      - $ref: '#/definitions/BaseMovieModel'    
+    type: object
+    properties:
+      stars:
+        type: array
+        description: An array of IDs for each actor or actress of the movie.
+        items:
+          type: number
+    required:
+      - stars
+    example:
+        title: The Shawshank Redemption
+        year: 1994
+        stars:
+        - 1      
+      
+  MovieExtended:
+    allOf:
+      - $ref: '#/definitions/BaseMovieModel'
+    type: object
+    properties:
+      stars:
+        type: array
+        description: The cast of the movie.
+        items:
+          $ref: '#/definitions/Star'
+    required:
+      - stars
+    example:
+      title: The Shawshank Redemption
+      year: 1994
+      stars:
+        - id: 1
+          name: Tim
+          lastname: Robbins
+      
+  Star:
+    title: Star
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      lastname:
+        type: string
+    required:
+      - name
+      - lastname
