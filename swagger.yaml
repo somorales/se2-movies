@@ -48,19 +48,31 @@ paths:
           schema:
             $ref: '#/definitions/Movie'
       responses:
-        201:
-          description: ''
+        200:
+          description: Successful Response
           schema:
             $ref: '#/definitions/MovieExtended'
 
 
 definitions:
+  # This is just a simple model for that defines the Primary Key
+  # We could reuse this on the rest of our models.
+  PK:
+    type: object
+    properties:
+      id:
+        type: number
+        description: The identifier.
+        
   # This is a base Movie model that "packs" the basic properties
   # to avoid repeating ourselves.
   BaseMovieModel:
     title: Movie
     type: object
     properties:
+      # id:
+      #   type: number
+      #   readOnly: true
       title:
         type: string
         description: The title of the movie.
@@ -70,9 +82,10 @@ definitions:
     required:
       - title
       - year
+      
+      
         
   Movie:
-    title: Movie
     allOf:
       - $ref: '#/definitions/BaseMovieModel'    
     type: object
@@ -85,6 +98,7 @@ definitions:
     required:
       - stars
     example:
+        id: 45
         title: The Shawshank Redemption
         year: 1994
         stars:
@@ -92,6 +106,7 @@ definitions:
       
   MovieExtended:
     allOf:
+      - $ref: '#/definitions/PK'
       - $ref: '#/definitions/BaseMovieModel'
     type: object
     properties:
@@ -103,6 +118,7 @@ definitions:
     required:
       - stars
     example:
+      id: 45
       title: The Shawshank Redemption
       year: 1994
       stars:
