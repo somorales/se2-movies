@@ -31,6 +31,16 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Movie'
+            example:
+              - id: 45
+                title: The Shawshank Redemption
+                year: 1994
+                stars: [1]
+              - id: 46
+                title: Inglourious Basterds
+                year: 2009
+                stars: [4, 5, 6]
+
 
     post:
       description: >-
